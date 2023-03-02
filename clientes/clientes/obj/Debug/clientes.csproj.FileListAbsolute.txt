@@ -1,0 +1,8 @@
+C:\Users\Oscar\OneDrive\Documentos\Primer Semestre 2023 UDEO\Programación 3\clientes\clientes\bin\Debug\clientes.exe.config
+C:\Users\Oscar\OneDrive\Documentos\Primer Semestre 2023 UDEO\Programación 3\clientes\clientes\bin\Debug\clientes.exe
+C:\Users\Oscar\OneDrive\Documentos\Primer Semestre 2023 UDEO\Programación 3\clientes\clientes\bin\Debug\clientes.pdb
+C:\Users\Oscar\OneDrive\Documentos\Primer Semestre 2023 UDEO\Programación 3\clientes\clientes\obj\Debug\clientes.csproj.AssemblyReference.cache
+C:\Users\Oscar\OneDrive\Documentos\Primer Semestre 2023 UDEO\Programación 3\clientes\clientes\obj\Debug\clientes.csproj.SuggestedBindingRedirects.cache
+C:\Users\Oscar\OneDrive\Documentos\Primer Semestre 2023 UDEO\Programación 3\clientes\clientes\obj\Debug\clientes.csproj.CoreCompileInputs.cache
+C:\Users\Oscar\OneDrive\Documentos\Primer Semestre 2023 UDEO\Programación 3\clientes\clientes\obj\Debug\clientes.exe
+C:\Users\Oscar\OneDrive\Documentos\Primer Semestre 2023 UDEO\Programación 3\clientes\clientes\obj\Debug\clientes.pdb
