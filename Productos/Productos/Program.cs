@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,25 @@ namespace Productos
 
         static Producto[] misProductos = new Producto[10];
         static int contador = 0;
+        static String ubicacion = "C:/Ficheros/productos.txt";
+
+        /*Manejo de Archivos*/
+        public static void CargarProductos() 
+        {
+            StreamReader leer = new StreamReader(ubicacion);
+            while (!leer.EndOfStream)
+            {
+                string linea = leer.ReadLine();
+                string[] aux = linea.Split(',');
+                misProductos[contador].Codigo = aux[0];
+                misProductos[contador].Descripcion = aux[1];
+                misProductos[contador].PrecioCosto = Convert.ToDouble(aux[2]);
+                misProductos[contador].PreciodeVenta = Convert.ToDouble(aux[3]);
+                misProductos[contador].Existencia = Convert.ToDouble(aux[4]);
+                contador++;
+            }
+            leer.Close();
+        }
 
         /* Metodos */
         public static void IngresarProductos() {
@@ -57,9 +77,16 @@ namespace Productos
                     misProductos[contador].PreciodeVenta = Convert.ToDouble(Console.ReadLine());
                     Console.Write("Existencia: ");
                     misProductos[contador].Existencia = Convert.ToDouble(Console.ReadLine());
+                    /*Ingreso de Clientes al Fichero*/
+                    String ingProductos = misProductos[contador].Codigo + "," + misProductos[contador].Descripcion + "," + misProductos[contador].PrecioCosto + "," +
+                        misProductos[contador].PreciodeVenta + "," + misProductos[contador].Existencia;
+                    StreamWriter escribir = new StreamWriter(ubicacion,true);
+                    escribir.WriteLine(ingProductos);
+                    escribir.Close();
                     contador++;
                     Console.Write("¿Desea ingresar otro Producto? S/N: ");
                     siono = Convert.ToChar(Console.ReadLine());
+
                 }
 
             } while (siono == 's' || siono == 'S');
@@ -190,6 +217,16 @@ namespace Productos
                     misProductos[pos].PreciodeVenta = Convert.ToDouble(Console.ReadLine());
                     Console.Write("Nueva Existencia: " );
                     misProductos[pos].Existencia = Convert.ToDouble(Console.ReadLine());
+                    /*Actualizacion conjunto elimnacion y creacion del archivo*/
+                    StreamWriter escribir = new StreamWriter(ubicacion);
+                    for(int i = 0; i < contador; i++)
+                    {
+                        String linea = misProductos[i].Codigo + "," + misProductos[i].Descripcion + "," + misProductos[i].PrecioCosto + "," +
+                        misProductos[i].PreciodeVenta + "," + misProductos[i].Existencia;
+                        escribir.WriteLine(linea);
+                    }
+                    escribir.Close();
+                    Console.WriteLine("Producto Actualizado Correctamente");
                     Console.WriteLine("¿Desea Modificar otro Producto? S/N: ");
                     siono = Convert.ToChar(Console.ReadLine());
                 }
@@ -238,6 +275,15 @@ namespace Productos
                             misProductos[x] = misProductos[x + 1];
                         }
                         contador--;
+                        /*Actualizacion conjunto elimnacion y creacion del archivo*/
+                        StreamWriter escribir = new StreamWriter(ubicacion);
+                        for (int i = 0; i < contador; i++)
+                        {
+                            String linea = misProductos[i].Codigo + "," + misProductos[i].Descripcion + "," + misProductos[i].PrecioCosto + "," +
+                            misProductos[i].PreciodeVenta + "," + misProductos[i].Existencia;
+                            escribir.WriteLine(linea);
+                        }
+                        escribir.Close();
                         Console.WriteLine("Producto Eliminado con exito");
                     }
                     else { 
@@ -255,6 +301,7 @@ namespace Productos
         /* Menu */
         public static void Menu()
         {
+            CargarProductos();
             bool salir = false;
             while (!salir)
             {
@@ -290,14 +337,13 @@ namespace Productos
                         salir = true;
                         break;
                     default:
-                        Console.WriteLine("Elige una opcion entre 1 y 5");
+                        Console.WriteLine("Elige una opcion entre 1 y 6");
                         break;
                 }
 
             }
         }
     
-
         static void Main(string[] args)
         {
             Menu();
